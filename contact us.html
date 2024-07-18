@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products-RedStore.com</title>
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <img src="images/logo.png" width="130px" />
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="product.html">PRODUCTS</a></li>
+            <li><a href="">ABOUT</a></li>
+            <li><a href="contact us.html">CONTACT</a></li>
+            <li><a href="account.html">ACCOUNT</a></li>
+          </ul>
+        </nav>
+        <a href="cart.html">
+        <img src="images/cart.png" width="30px" height="30px" /></a>
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
+      </div>
+    </div>
+    <!----------account-page-------->
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="images/image1.png" width="500px">
+                </div>
+                <div class="col-2">
+                    <div class="contact">
+                    <div class="left-side">
+                        <div class="address-details">
+                            <i class ="fa fa-map-marker"></i>
+                           <div class="topic">Address</div>
+                            <p>TRF Colony.13</p>
+                            <p>Jamshedpur, India</p>
+                        </div>
+                        <div class="phone-details">
+                            <i class ="fa fa-phone-square"></i>
+                            <div class="topic">Phone</div>
+                            <div class="text-one">+91 9508 383 139</div>
+                            <div class="text-two">+90 6504 51325</div>
+                        </div>
+                        <div class="email-details">
+                            <i class ="fa fa-envelope-o"></i>
+                            <div class="topic">E-Mail</div>>
+                            <div class="text-one">swayam@gmail.com</div>
+                            <div class="text-two">rstore24.yahoo.com</div>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <div class="topic-text">Get In Touch</div>
+                        <p>Hey! If you have any products related issues you can freely contact to us </p>
+                    
+                    <form action="#">
+                        <div class="input-box">
+                            <input type="text" placeholder="Enter your Name">
+                        </div>
+                        <div class="input-box">
+                            <input type="text" placeholder="Enter your E-mail">
+                        </div>
+                        <div class="input-box message-box">
+                            <textarea placeholder="Mesaage Here"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Now</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+      <!---------footer--------->
+      <div class="footer">
+        <div class="contaioner">
+          <div class="row">
+            <div class="footer-col-1">
+              <h3>Download Our App</h3>
+              <p>Download App for Android and IOS mobile phone.</p>
+              <div class="app-logo">
+                <img src="images/play-store.png" />
+                <img src="images/app-store.png" />
+              </div>
+            </div>
+            <div class="footer-col-2">
+              <img src="images/logo-white.png" />
+              <p>
+                Our Purpose Is To Sustainably Make the Pleasure and Benifits of
+                Sports Accessible to the Many.
+              </p>
+            </div>
+            <div class="footer-col-3">
+              <h3>Useful Links</h3>
+              <ul>
+                <li>Coupons</li>
+                <li>Blog Post</li>
+                <li>Return Policy</li>
+                <li>Join Affiliate</li>
+              </ul>
+            </div>
+            <div class="footer-col-4">
+              <h3>Follow us</h3>
+              <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+                <li>Youtube</li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <p class="copyright">Copyright 2024&copy; Red Store.com</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
