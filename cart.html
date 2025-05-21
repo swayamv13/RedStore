@@ -1,166 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Products-RedStore.com</title>
-    <link rel="stylesheet" href="main.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <div class="navbar">
-        <div class="logo">
-          <img src="images/logo.png" width="130px" />
-        </div>
-        <nav>
-          <ul id="MenuItems">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="product.html">PRODUCTS</a></li>
-            <li><a href="">ABOUT</a></li>
-            <li><a href="contact us.html">CONTACT</a></li>
-            <li><a href="account.html">ACCOUNT</a></li>
-          </ul>
-        </nav>
-        <a href="cart.html">
-        <img src="images/cart.png" width="30px" height="30px" /></a>
-        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart - RedStore</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"><img src="images/logo.png" width="130px" /></a>
       </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="product.html">PRODUCTS</a></li>
+          <li><a href="">ABOUT</a></li>
+          <li><a href="contact us.html">CONTACT</a></li>
+          <li><a href="account.html">ACCOUNT</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html" style="position:relative;">
+        <img src="images/cart.png" width="30px" height="30px" />
+        <span id="cart-count" style="position:absolute; top:-8px; right:-10px; background:red; color:white; font-size:12px; padding:2px 6px; border-radius:50%; font-weight:bold;"></span>
+      </a>
+      <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
     </div>
-    <!--------cart-item details------>
-    <div class="small-container cart-page">
-        <table>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="images/buy-1.jpg">
-                        <div>
-                            <p>PUMA Tshirt</p>
-                            <small>price: ₹900</small> 
-                            <br>   
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>₹900.00</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="images/buy-2.jpg">
-                        <div>
-                            <p>HRX Shoes</p>
-                            <small>price: ₹1200</small> 
-                            <br>   
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>₹1200.00</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="images/buy-3.jpg">
-                        <div>
-                            <p>NIKE Trouser</p>
-                            <small>price: ₹1550</small> 
-                            <br>   
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>₹1550.00</td>
-            </tr>
-        </table>
-        <div class="total-price">
-            <table>
-                <tr>
-                    <td>Subtotal</td>
-                    <td>₹3650.00</td>
-                </tr>
-                <tr>
-                    <td>Tax</td>
-                    <td>₹50.00</td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>₹3700.00</td>
-                </tr>
-            </table>
-        </div>
+  </div>
+
+  <!--------cart-item details-------->
+  <div class="small-container cart-page">
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+        <!-- Dynamic cart items will be injected here -->
+      </tbody>
+    </table>
+
+    <div class="total-price" style="margin-top: 20px;">
+      <table>
+        <tr>
+          <td>Subtotal</td>
+          <td id="subtotal">₹0</td>
+        </tr>
+        <tr>
+          <td>Tax (2%)</td>
+          <td id="tax">₹0</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td id="total">₹0</td>
+        </tr>
+      </table>
+      <br>
+      <button onclick="clearCart()">Clear Cart</button>
     </div>
-      <!---------footer--------->
-      <div class="footer">
-        <div class="contaioner">
-          <div class="row">
-            <div class="footer-col-1">
-              <h3>Download Our App</h3>
-              <p>Download App for Android and IOS mobile phone.</p>
-              <div class="app-logo">
-                <img src="images/play-store.png" />
-                <img src="images/app-store.png" />
-              </div>
-            </div>
-            <div class="footer-col-2">
-              <img src="images/logo-white.png" />
-              <p>
-                Our Purpose Is To Sustainably Make the Pleasure and Benifits of
-                Sports Accessible to the Many.
-              </p>
-            </div>
-            <div class="footer-col-3">
-              <h3>Useful Links</h3>
-              <ul>
-                <li>Coupons</li>
-                <li>Blog Post</li>
-                <li>Return Policy</li>
-                <li>Join Affiliate</li>
-              </ul>
-            </div>
-            <div class="footer-col-4">
-              <h3>Follow us</h3>
-              <ul>
-                <li>Facebook</li>
-                <li>Twitter</li>
-                <li>Instagram</li>
-                <li>Youtube</li>
-              </ul>
-            </div>
-          </div>
-          <hr />
-          <p class="copyright">Copyright 2024&copy; Red Store.com</p>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <script>
-      var MenuItems = document.getElementById("MenuItems");
+  <script>
+    function menutoggle() {
+      const MenuItems = document.getElementById("MenuItems");
+      MenuItems.style.maxHeight = MenuItems.style.maxHeight === "0px" ? "200px" : "0px";
+    }
 
-      MenuItems.style.maxHeight = "0px";
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      renderCart();
+    });
 
-      function menutoggle() {
-        if (MenuItems.style.maxHeight == "0px") {
-          MenuItems.style.maxHeight = "200px";
-        } else {
-          MenuItems.style.maxHeight = "0px";
-        }
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartBody = document.getElementById("cart-body");
+      const subtotalBox = document.getElementById("subtotal");
+      const taxBox = document.getElementById("tax");
+      const totalBox = document.getElementById("total");
+
+      if (cart.length === 0) {
+        cartBody.innerHTML = `<tr><td colspan="5">Your cart is empty.</td></tr>`;
+        subtotalBox.innerText = "₹0";
+        taxBox.innerText = "₹0";
+        totalBox.innerText = "₹0";
+        return;
       }
-    </script>
-  </body>
+
+      cartBody.innerHTML = '';
+      let subtotal = 0;
+
+      cart.forEach((item, index) => {
+        const itemSubtotal = item.price * item.quantity;
+        subtotal += itemSubtotal;
+
+        cartBody.innerHTML += `
+          <tr>
+            <td>${item.name}</td>
+            <td>${item.size}</td>
+            <td>
+              <input type="number" value="${item.quantity}" min="1" onchange="changeQty(${index}, this.value)" />
+            </td>
+            <td>₹${itemSubtotal}</td>
+            <td><a href="#" onclick="removeItem(${index})">Remove</a></td>
+          </tr>
+        `;
+      });
+
+      const tax = Math.round(subtotal * 0.02);
+      const total = subtotal + tax;
+
+      subtotalBox.innerText = `₹${subtotal}`;
+      taxBox.innerText = `₹${tax}`;
+      totalBox.innerText = `₹${total}`;
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    function changeQty(index, newQty) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart[index].quantity = parseInt(newQty);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    function clearCart() {
+      localStorage.removeItem("cart");
+      renderCart();
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const counter = document.getElementById("cart-count");
+      if (counter) {
+        counter.innerText = count;
+      }
+    }
+  </script>
+</body>
 </html>

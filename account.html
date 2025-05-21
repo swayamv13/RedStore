@@ -34,6 +34,8 @@
         <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
       </div>
     </div>
+    <div id="messageBox" style="text-align:center; font-weight:bold; margin:10px;"></div>
+
     <!----------account-page-------->
     <div class="account-page">
         <div class="container">
@@ -44,20 +46,22 @@
                 <div class="col-2">
                     <div class="form-container">
                         <div class="form-btn">
-                            <span onclick="login()"">Login</span>
+                            <span onclick="login()">Login</span>
                             <span onclick="register()">Register</span>
                             <hr id="indicator">
                         </div>
                         <form id="loginform">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="password">
+                            <input type="text" placeholder="E-Mail">
+                            <input type="password" placeholder="Password" autocomplete="current-password">
                             <button type="submit" class="btn">Login</button>
                             <a href="">Forgot password</a>
                          </form>   
                             <form id="regform">
-                                <input type="text" placeholder="Username">
-                                <input type="email" placeholder="Email">
-                                <input type="password" placeholder="Password">
+                                <input id="username" type="text" placeholder="Username">
+                                <input id="loginEmail" type="email" placeholder="E-Mail" autocomplete="email">
+                                <input id="loginPassword" type="password" placeholder="Password" autocomplete="current-password">
+
+
                                 <button type="submit" class="btn">Register</button>
                             </form>
                     </div>
@@ -121,6 +125,7 @@
           MenuItems.style.maxHeight = "0px";
         }
       }
+
     </script>
 <!---------js for toggle form-------->
     <script>
@@ -140,5 +145,92 @@
                 indicator.style.transform = "translateX(0px)"
             }
     </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAAr8pTBV_KeXI6kIzpG7ytEz2gdQ33Gfo",
+    authDomain: "redstore-11080.firebaseapp.com",
+    projectId: "redstore-11080",
+    storageBucket: "redstore-11080.appspot.com",
+    messagingSenderId: "869693841848",
+    appId: "1:869693841848:web:4bc979a6a9763121e82f4d"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const loginForm = document.getElementById("loginform");
+  const regForm = document.getElementById("regform");
+  const messageBox = document.getElementById("messageBox");
+
+  function showMessage(text, color = "black") {
+    messageBox.textContent = text;
+    messageBox.style.color = color;
+
+    setTimeout(() => {
+      messageBox.textContent = "";
+    }, 2000); // clear message after 3 seconds
+  }
+
+  // Login logic
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = loginForm.elements[0].value;
+    const password = loginForm.elements[1].value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        showMessage("Login successful!", "green");
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1700); // short delay before redirect
+      })
+      .catch((error) => {
+        showMessage("Login failed: " + error.message, "red");
+      });
+  });
+
+  // Register logic
+  regForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      const userData = {
+        email: email,
+        username: username
+      };
+      const docRef = doc(db, "users", user.uid);
+      return setDoc(docRef, userData);
+    })
+    .then(() => {
+      showMessage("Registration successful. Please login now.", "green");
+      login(); // switch to login form
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      if (errorCode === "auth/email-already-in-use") 
+        showMessage("Email address already exists", "red");
+      else {
+        showMessage("Unable to create user: " + error.message, "red");
+      }
+    });
+});
+
+
+
+    
+
+</script>
+
+
   </body>
 </html>

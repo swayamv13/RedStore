@@ -29,9 +29,10 @@
             <li><a href="account.html">ACCOUNT</a></li>
           </ul>
         </nav>
-        <a href="cart.html">
+        <a href="cart.html" style="position:relative;">
           <img src="images/cart.png" width="30px" height="30px" />
-        </a>
+          <span id="cart-count" style="position:absolute; top:-8px; right:-10px; background:red; color:white; font-size:12px; padding:2px 6px; border-radius:50%; font-weight:bold;">3</span>
+        </a> 
         <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
       </div>
     </div>
@@ -258,6 +259,31 @@
           MenuItems.style.maxHeight = "0px";
         }
       }
+    </script>
+    <script>
+      // When adding to cart
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount(); // update cart UI immediately
+}
+
+// To update cart count everywhere
+function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        const counter = document.getElementById("cart-count");
+        if (counter) {
+          counter.innerText = count;
+        }
+      }
+    
+      document.addEventListener("DOMContentLoaded", updateCartCount);
+
+// When page loads
+
+
     </script>
   </body>
 </html>
